@@ -1,0 +1,48 @@
+services:
+  wg-peer-1:
+    image: wg-recipe-1:latest
+    container_name: wg-recipe-1_server
+    hostname: wg-server
+    build:
+      containerfile: ./Containerfile_wg-server
+    networks:
+      - wg-recipe-1
+    cap_add:
+      - NET_ADMIN
+    tty: true
+    stdin_open: true
+    volumes:
+      - $PWD/setup/server:/setup
+      
+  wg-peer-2:
+    image: wg-recipe-1:latest
+    container_name: wg-recipe-1_peer-1
+    hostname: wg-peer-1
+    build:
+      containerfile: ./Containerfile_wg-peer
+    networks:
+      - wg-recipe-1
+    cap_add:
+      - NET_ADMIN
+    tty: true
+    stdin_open: true
+    volumes:
+      - $PWD/setup/peer-1:/setup
+
+  wg-server:
+    image: wg-recipe-1:latest
+    container_name: wg-recipe-1_peer-2
+    hostname: wg-peer-2
+    build:
+      containerfile: ./Containerfile_wg-peer
+    networks:
+      - wg-recipe-1
+    cap_add:
+      - NET_ADMIN
+    tty: true
+    stdin_open: true
+    volumes:
+      - $PWD/setup/peer-2:/setup
+
+networks:
+  wg-recipe-1:

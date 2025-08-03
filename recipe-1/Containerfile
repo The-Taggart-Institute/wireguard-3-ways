@@ -1,0 +1,5 @@
+FROM alpine:latest
+
+RUN apk add wireguard-tools bash nano helix
+COPY ./peer.conf /etc/wireguard/recipe-1.conf
+ENTRYPOINT /bin/bash
