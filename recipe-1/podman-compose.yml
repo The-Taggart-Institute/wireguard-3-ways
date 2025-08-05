@@ -1,6 +1,6 @@
 services:
   wg-home-1:
-    image: wg-recipe-1:latest
+    image: wg-peer:recipe-1
     container_name: wg-recipe-1_server
     hostname: r1_wg-home-1
     build:
