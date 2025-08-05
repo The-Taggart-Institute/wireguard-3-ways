@@ -4,9 +4,11 @@ services:
     container_name: wg-recipe-1_server
     hostname: r1_wg-home-1
     build:
-      dockerfile: ./Containerfile_wg-peer
+      context: ./peer
+      dockerfile: Containerfile
     networks:
-      - wg-recipe-1_home
+      wg-recipe-1_home:
+        ipv4_address: 192.168.99.3
     cap_add:
       - NET_ADMIN
     tty: true
@@ -17,9 +19,11 @@ services:
     container_name: wg-recipe-1_peer-1
     hostname: r1_wg-home-2
     build:
-      dockerfile: ./Containerfile_wg-peer
+      context: ./peer
+      dockerfile: Containerfile
     networks:
-      - wg-recipe-1_home
+      wg-recipe-1_home:
+        ipv4_address: 192.168.99.4
     cap_add:
       - NET_ADMIN
     tty: true
@@ -30,9 +34,11 @@ services:
     container_name: wg-recipe-1_peer-2
     hostname: r1_wg-roaming-1
     build:
-      dockerfile: ./Containerfile_wg-peer
+      context: ./peer
+      dockerfile: Containerfile
     networks:
-      - wg-recipe-1_roaming
+      wg-recipe-1_roaming:
+        ipv4_address: 10.1.99.2
     cap_add:
       - NET_ADMIN
     tty: true
@@ -43,22 +49,30 @@ services:
     container_name: wg-recipe-1_home-router
     hostname: r1_home-router
     build:
-      dockerfile: ./Containerfile_home-router
+      context: ./home-router
+      dockerfile: Containerfile
     networks:
-      - wg-recipe-1_home
-      - wg-recipe-1_roaming
+      wg-recipe-1_home:
+        ipv4_address: 192.168.99.2
+      wg-recipe-1_roaming:
+        ipv4_address: 10.1.99.10
     cap_add:
       - NET_ADMIN
+      - NET_RAW
     tty: true
     stdin_open: true
 
 networks:
   wg-recipe-1_home:
+    driver_opts:
+      com.docker.network.bridge.name: home
     ipam:
       config:
         - subnet: 192.168.99.0/24
           ip_range: 192.168.99.0/24
   wg-recipe-1_roaming:
+    driver_opts:
+      com.docker.network.bridge.name: roaming
     ipam:
       config:
         - subnet: 10.1.99.0/24
