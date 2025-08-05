@@ -4,7 +4,7 @@ services:
     container_name: wg-recipe-1_server
     hostname: r1_wg-home-1
     build:
-      containerfile: ./Containerfile_wg-server
+      dockerfile: ./Containerfile_wg-peer
     networks:
       - wg-recipe-1_home
     cap_add:
@@ -13,11 +13,11 @@ services:
     stdin_open: true
       
   wg-home-2:
-    image: wg-recipe-1:latest
+    image: wg-peer:recipe-1
     container_name: wg-recipe-1_peer-1
     hostname: r1_wg-home-2
     build:
-      containerfile: ./Containerfile_wg-peer
+      dockerfile: ./Containerfile_wg-peer
     networks:
       - wg-recipe-1_home
     cap_add:
@@ -26,11 +26,11 @@ services:
     stdin_open: true
 
   wg-roaming-1:
-    image: wg-recipe-1:latest
+    image: wg-peer:recipe-1
     container_name: wg-recipe-1_peer-2
     hostname: r1_wg-roaming-1
     build:
-      containerfile: ./Containerfile_wg-peer
+      dockerfile: ./Containerfile_wg-peer
     networks:
       - wg-recipe-1_roaming
     cap_add:
@@ -39,11 +39,11 @@ services:
     stdin_open: true
 
   home-router:
-    image: wg-home-router:recipe-1
+    image: home-router:recipe-1
     container_name: wg-recipe-1_home-router
     hostname: r1_home-router
     build:
-      containerfile: ./Containerfile_home-router
+      dockerfile: ./Containerfile_home-router
     networks:
       - wg-recipe-1_home
       - wg-recipe-1_roaming
