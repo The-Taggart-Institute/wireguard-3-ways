@@ -5,7 +5,7 @@ podman compose up -d
 
 
 # Initialize Zellij
-zellij --layout zellij_recipe-1.kdl
+zellij -n zellij_recipe-1.kdl -s recipe-1
 
 
 
