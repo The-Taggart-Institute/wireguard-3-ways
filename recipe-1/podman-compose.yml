@@ -38,6 +38,20 @@ services:
     tty: true
     stdin_open: true
 
+  home-router:
+    image: wg-home-router:recipe-1
+    container_name: wg-recipe-1_home-router
+    hostname: r1_home-router
+    build:
+      containerfile: ./Containerfile_home-router
+    networks:
+      - wg-recipe-1_home
+      - wg-recipe-1_roaming
+    cap_add:
+      - NET_ADMIN
+    tty: true
+    stdin_open: true
+
 networks:
   wg-recipe-1_home:
     ipam:
