@@ -1,5 +1,7 @@
 FROM alpine:latest
 
-RUN apk add wireguard-tools bash nano helix
-COPY ./peer.conf /etc/wireguard/recipe-1.conf
+RUN apk add wireguard-tools tcpdump bash nano helix
+RUN mkdir /peer
+COPY ./peer.conf /peer/
+COPY ./setup.sh /peer/
 ENTRYPOINT /bin/bash

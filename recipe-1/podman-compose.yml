@@ -1,8 +1,8 @@
 services:
-  wg-home-1:
+  wg-home:
     image: wg-peer:recipe-1
     container_name: wg-recipe-1_server
-    hostname: r1_wg-home-1
+    hostname: r1_wg-home
     build:
       context: ./peer
       dockerfile: Containerfile
@@ -11,28 +11,14 @@ services:
         ipv4_address: 192.168.99.3
     cap_add:
       - NET_ADMIN
+      - NET_RAW
     tty: true
     stdin_open: true
       
-  wg-home-2:
-    image: wg-peer:recipe-1
-    container_name: wg-recipe-1_peer-1
-    hostname: r1_wg-home-2
-    build:
-      context: ./peer
-      dockerfile: Containerfile
-    networks:
-      wg-recipe-1_home:
-        ipv4_address: 192.168.99.4
-    cap_add:
-      - NET_ADMIN
-    tty: true
-    stdin_open: true
-
-  wg-roaming-1:
+  wg-roaming:
     image: wg-peer:recipe-1
     container_name: wg-recipe-1_peer-2
-    hostname: r1_wg-roaming-1
+    hostname: r1_wg-roaming
     build:
       context: ./peer
       dockerfile: Containerfile
@@ -41,15 +27,16 @@ services:
         ipv4_address: 10.1.99.2
     cap_add:
       - NET_ADMIN
+      - NET_RAW
     tty: true
     stdin_open: true
 
-  home-router:
-    image: home-router:recipe-1
-    container_name: wg-recipe-1_home-router
-    hostname: r1_home-router
+  lighthouse:
+    image: wg-peer:recipe-1
+    container_name: wg-recipe-1_lighthouse
+    hostname: r1_lighthouse
     build:
-      context: ./home-router
+      context: ./peer
       dockerfile: Containerfile
     networks:
       wg-recipe-1_home:
