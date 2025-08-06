@@ -19,20 +19,15 @@ layout {
             plugin location="zellij:tab-bar"
         }
         pane split_direction="vertical" {
-            pane  size="50%" {
-                pane command="podman" size="50%" focus=true {
-                    args "exec" "-it" "wg-recipe-1_home-router" "/bin/bash"
-                }
-                pane command="podman" size="50%" {
-                    args "exec" "-it" "wg-recipe-1_server" "/bin/bash"
-                }
+            pane command="podman" size="50%" focus=true {
+                args "exec" "-it" "wg-recipe-1_lighthouse" "/bin/bash"
             }
             pane size="50%" {
                 pane command="podman" size="50%" {
-                    args "exec" "-it" "wg-recipe-1_peer-1" "/bin/bash"
+                    args "exec" "-it" "wg-recipe-1_home" "/bin/bash"
                 }
                 pane command="podman" size="50%" {
-                    args "exec" "-it" "wg-recipe-1_peer-2" "/bin/bash"
+                    args "exec" "-it" "wg-recipe-1_roaming" "/bin/bash"
                 }
             }
         }
