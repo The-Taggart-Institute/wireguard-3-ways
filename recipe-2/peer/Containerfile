@@ -1,0 +1,7 @@
+FROM alpine:latest
+
+RUN apk add wireguard-tools tcpdump bash nano helix curl
+RUN mkdir /peer
+COPY ./peer.conf /peer/
+COPY ./setup.sh /peer/
+ENTRYPOINT /bin/bash

@@ -1,0 +1,7 @@
+FROM alpine:latest
+
+RUN apk add wireguard-tools tcpdump bash nano helix curl nftables
+RUN mkdir /peer
+COPY ./home-router.conf /etc/wireguard/recipe-2.conf
+COPY ./setup.sh /peer/
+ENTRYPOINT /bin/bash
