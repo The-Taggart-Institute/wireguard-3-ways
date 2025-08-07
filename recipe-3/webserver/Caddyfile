@@ -1,0 +1,3 @@
+http:// {
+	respond "Hello from Caddy!"
+}

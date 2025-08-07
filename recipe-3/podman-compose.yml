@@ -1,0 +1,79 @@
+services:
+  headscale:
+    image: docker.io/headscale/headscale:stable-debug
+    container_name: recipe-3_headscale
+    hostname: r3_headscale
+    networks:
+      wg-recipe-3_roaming:
+        ipv4_address: 10.1.99.11
+    volumes:
+      - $PWD/headscale/config:/etc/headscale
+      - $PWD/headscale/lib:/var/lib/headscale
+      - $PWD/headscale/run:/var/run/headscale
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    tty: true
+    stdin_open: true      
+    command: serve
+
+  ts-client_home:
+    image: ts-client:recipe-3
+    container_name: recipe-3_ts-client_home
+    hostname: r3_ts-client_home
+    build:
+      context: ./client
+      dockerfile: Containerfile
+    networks:
+      - wg-recipe-3_home
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    tty: true
+    stdin_open: true
+
+  ts-client_roaming:
+    image: ts-client:recipe-3
+    container_name: recipe-3_ts-client_roaming
+    hostname: r3_ts-client_roaming
+    build:
+      context: ./client
+      dockerfile: Containerfile
+    networks:
+      - wg-recipe-3_roaming
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    tty: true
+    stdin_open: true
+
+  home-webserver:
+    image: home-webserver:recipe-3
+    container_name: recipe-3_webserver
+    hostname: r3_wg-webserver
+    build:
+      context: ./webserver
+      dockerfile: Containerfile
+    networks:
+      - wg-recipe-3_home
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    tty: true
+    stdin_open: true
+
+networks:
+  wg-recipe-3_home:
+    driver_opts:
+      com.docker.network.bridge.name: home
+    ipam:
+      config:
+        - subnet: 192.168.99.0/24
+          ip_range: 192.168.99.0/24
+  wg-recipe-3_roaming:
+    driver_opts:
+      com.docker.network.bridge.name: roaming
+    ipam:
+      config:
+        - subnet: 10.1.99.0/24
+          ip_range: 10.1.99.0/24

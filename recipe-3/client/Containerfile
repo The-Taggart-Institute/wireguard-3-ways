@@ -1,0 +1,3 @@
+FROM alpine:latest
+RUN apk add curl bash tcpdump tailscale helix nano vim
+ENTRYPOINT ["tailscaled", "-tun=userspace-networking"]
