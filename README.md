@@ -36,8 +36,24 @@ In this recipe, all our peers live on the same network. That could make Wireguar
 
 If we want to connect multiple hosts across networks, but we don't want to open inbound ports, we need to use a public server that all our peers can see. This "lighthouse" server will be the one to which all the others connect.
 
-### 2. The Coordinated Mesh
+### 2. The Lighthouse + Subnet Router
+
+What if we want access to an entire home network without wanting to configure Wireguard on all of those devices? That's where "subnet routers" come in. This configuration allows a (Linux) Wireguard host to provide access to its neighbors through the Wireguard tunnel.
+
+### 3. The Coordinated Mesh
 
 One of the shortcomings of the "lighthouse" model is that the lighthouse becomes a termination point for the Wireguard encrypted tunnel. If we have doubts about our cloud service provider, then any otherwise unencrypted traffic may be sniffed with access to this server. But we need a central point that everyone can see to guarantee connection. How to square this circle?
 
-[Tailscale](https://tailscale.com) solves this problem by using multiple strategies to show peers how to connect, and then allows the peers to connect directly to each other, eliminating the machine-in-the-middle.
+[Tailscale](https://tailscale.com) solves this problem by using multiple strategies to show peers how to connect, and then allows the peers to connect directly to each other, eliminating the machine-in-the-middle. And it's all built on top of Wireguard, so you get the same security with much less hassle.
+
+But Tailscale is a cloud service. So suppose you didn't want to entrust your data there either? Luckily, the core of Tailscale is open source—both client daemon and server. [Headscale](https://headscale.net) is a way to self-host a Tailscale server and network. The setup for Headscale is *considerably* easier than raw Wireguard.
+
+
+## Instructions
+
+See individual folders for specific instructions
+
+- [Recipe 0](./recipe-0/README.md)
+- [Recipe 1](./recipe-1/README.md)
+- [Recipe 2](./recipe-2/README.md)
+- [Recipe 3](./recipe-3/README.md)
