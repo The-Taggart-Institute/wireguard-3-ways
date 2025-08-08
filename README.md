@@ -36,6 +36,17 @@ The containers will have several terminal-based text editors installed (Vim, Nan
 
 Familiarity with the Linux command line will be extremely helpful in this workshop. As will familiarity with basic networking concepts such as subnets and firewall rules.
 
+### Cloud VM
+
+The Recipes provided in this repository are wholly self-contained. You can run them on any platform that supports Podman/Podman Compose. However, for full participation in the workshop, you will need two resources I can't provide for you:
+
+1. A registered domain name
+2. A cloud-hosted virtual machine
+
+These are not zero-cost, zero-identity activities, and as such are optional. However, the workshop will involve demonstrating how to set up a real Wireguard network for use across the internet, which means public-facing assets. If you intend to fully participate in the workshop, these will be necessary.
+
+I recommend [Porkbun](https://porkbun.com) or [Namecheap](https://namecheap.com) for a domain registrar, and [Digital Ocean](https://digitalocean.com) for a VPS provider.
+
 ## Usage
 
 Here are provided 3 "recipes" for creating Wireguard networks, in increasing complexity—and utility. Each is comprised of [Podman](https://podman.io) containers, networked together. They can be run on any platform that Podman supports, but for the HOPE workshop, a cloud VM will be provided for participants.
@@ -66,7 +77,9 @@ But Tailscale is a cloud service. So suppose you didn't want to entrust your dat
 
 ## How to Use This Repo
 
+The source of this repo is fully readable here, but the online "book" version for easy reading is online at [https://3ways.taggartinstitute.org](https://3ways.taggartinstitute.org).
 
+Read along and follow the provide instructions to participate in the workshop!
 
 ## Instructions
 
