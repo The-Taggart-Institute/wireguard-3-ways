@@ -47,7 +47,6 @@ privkey=$(wg genkey)
 pubkey=$(echo $privkey | wg pubkey)
 sed -i "s|<<PRIVATE_KEY>>|$privkey|" /etc/wireguard/recipe-0.conf
 sed -i "s|<<PUBLIC_KEY>>|$pubkey|" /etc/wireguard/recipe-0.conf
-```
 
 This fills in the public/private key for each peer's configuration. But we're not finished. We also need to decide on IP addresses for each. I'd use the `172.16.100.0/24` subnet. So our IP addresses could be:
 
@@ -57,3 +56,5 @@ This fills in the public/private key for each peer's configuration. But we're no
 
 
 Those go in the `Address` section of each peer config.
+
+Now for those `Peer` entries. For each host, we need to create two `[Peer]` entries. Peer 1 needs 2 and 3; Peer 2 needs 1 and 3; and Peer 3 needs 1 and 2. 
