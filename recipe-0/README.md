@@ -54,7 +54,19 @@ This fills in the public/private key for each peer's configuration. But we're no
 - `172.16.100.2/24`
 - `172.16.100.3/24`
 
-
 Those go in the `Address` section of each peer config.
 
 Now for those `Peer` entries. For each host, we need to create two `[Peer]` entries. Peer 1 needs 2 and 3; Peer 2 needs 1 and 3; and Peer 3 needs 1 and 2. 
+
+For each of these, we'll need the IP address in the non-Wireguard network for our `Endpoint` field. Use `ip address show` (or `ip a s` for short) to get those addresses. 
+
+Finally, add the proper public key from each respective configuration to the appropriate `Peer` entry for all the configuration files. Save all these files and quit back to the containers' terminal prompts.
+
+### Bring up the Wireguard Network
+
+
+On each host, run `wg-quick up recipe-0` to activate the Wireguard tunnel.
+
+You can then run `wg show` to show the status of the tunnel. If all has gone according to plan, you should have three hosts each showing two connections to other peers. You should also be able to ping those `172.16.100.0/24` addresses.
+
+Congratulations! You brought up a Wireguard mesh the hard way. The subsequent recipes automate a lot of the busywork now that you've had exposure to the concepts.
