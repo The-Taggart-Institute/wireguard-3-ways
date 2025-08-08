@@ -22,11 +22,27 @@ By the end of this workshop, participants will understand:
 - Wireguard networking strategies
 - Basic mesh networking principals
 
+## Requirements
+
+### Technical Requirements
+
+This workshop uses [Podman](https://podman.io) for its demonstrations. It can be installed on Linux, Windows or macOS. On Windows, Podman Desktop will require either [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or Hyper-V to virtualize a small Linux kernel. We will also use Podman Compose, which is a package install for Linux, but [Podman Desktop](https://podman-desktop.io/docs/compose) can support this function as well.
+
+The workshop will also use [Zellij](https://zellij.dev) for easy terminal control of the containers. If not participating with the provided resources, I recommend installing it.
+
+The containers will have several terminal-based text editors installed (Vim, Nano, Helix) to suit your preference. But you will be editing text in the terminal.
+
+### Prerequisites
+
+Familiarity with the Linux command line will be extremely helpful in this workshop. As will familiarity with basic networking concepts such as subnets and firewall rules.
+
 ## Usage
 
 Here are provided 3 "recipes" for creating Wireguard networks, in increasing complexity—and utility. Each is comprised of [Podman](https://podman.io) containers, networked together. They can be run on any platform that Podman supports, but for the HOPE workshop, a cloud VM will be provided for participants.
 
 ## The Recipes
+
+I know it says "3 ways" on the box, but actually we need to start with a fundamental dish before moving on to the real recipes.
 
 ### 0. A Simple Mesh
 
@@ -47,6 +63,9 @@ One of the shortcomings of the "lighthouse" model is that the lighthouse becomes
 [Tailscale](https://tailscale.com) solves this problem by using multiple strategies to show peers how to connect, and then allows the peers to connect directly to each other, eliminating the machine-in-the-middle. And it's all built on top of Wireguard, so you get the same security with much less hassle.
 
 But Tailscale is a cloud service. So suppose you didn't want to entrust your data there either? Luckily, the core of Tailscale is open source—both client daemon and server. [Headscale](https://headscale.net) is a way to self-host a Tailscale server and network. The setup for Headscale is *considerably* easier than raw Wireguard.
+
+## How to Use This Repo
+
 
 
 ## Instructions
