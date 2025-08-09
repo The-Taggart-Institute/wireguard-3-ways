@@ -51,6 +51,12 @@ I recommend [Porkbun](https://porkbun.com) or [Namecheap](https://namecheap.com)
 
 Here are provided 3 "recipes" for creating Wireguard networks, in increasing complexity—and utility. Each is comprised of [Podman](https://podman.io) containers, networked together. They can be run on any platform that Podman supports, but for the HOPE workshop, a cloud VM will be provided for participants.
 
+### Zellij
+
+The recipes provded each have a startup script that performs some housekeeping on the Podman containers. It also launches a helper terminal multiplexer called [Zellij](https://zellij.dev). If you aren't using the provided resources, I recommend installing Zellij to make full use of the environment.
+
+Zellij will create terminal windows for all necessary containers, as well as a separate window for interacting with the host itself. Zellij is mouse-sensitive and fairly intuitive—well, for a terminal tool.
+
 ## The Recipes
 
 I know it says "3 ways" on the box, but actually we need to start with a fundamental dish before moving on to the real recipes.
