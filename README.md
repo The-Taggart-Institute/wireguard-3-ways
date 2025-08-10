@@ -89,9 +89,4 @@ Read along and follow the provide instructions to participate in the workshop!
 
 ## Instructions
 
-See individual folders for specific instructions
-
-- [Recipe 0](./recipe-0/README.md)
-- [Recipe 1](./recipe-1/README.md)
-- [Recipe 2](./recipe-2/README.md)
-- [Recipe 3](./recipe-3/README.md)
+See the [docs](/docs/SUMMARY.md) folder for the instructions. Or click next if you're reading the book!
