@@ -1,3 +1,4 @@
 FROM wg-peer:recipe-2
-RUN echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
+COPY ./lighthouse.conf /etc/wireguard/recipe-2.conf
+COPY ./setup.sh /peer/setup.sh
 ENTRYPOINT /bin/bash

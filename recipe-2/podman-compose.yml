@@ -52,7 +52,7 @@ services:
     stdin_open: true
 
   lighthouse:
-    image: wg-peer:recipe-2
+    image: wg-lighthouse:recipe-2
     container_name: wg-recipe-2_lighthouse
     hostname: r2_lighthouse
     build:
