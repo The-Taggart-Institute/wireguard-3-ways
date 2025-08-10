@@ -1,0 +1,19 @@
+[book]
+authors = ["Michael Taggart"]
+language = "en"
+src = "docs"
+title = "Wireguard 3 Ways: Cooking up Privacy in a Surveillance State"
+build-dir = "book"
+
+[rust]
+edition = "2024"
+
+[preprocessor]
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
+
+[output]
+
+[output.html]
+additional-js = ["mermaid.min.js", "mermaid-init.js"]
