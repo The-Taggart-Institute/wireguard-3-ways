@@ -89,4 +89,4 @@ Read along and follow the provide instructions to participate in the workshop!
 
 ## Instructions
 
-See the [docs](/docs/SUMMARY.md) folder for the instructions. Or click next if you're reading the book!
+See the [docs](docs/SUMMARY.md) folder for the instructions. Or click next if you're reading the book!
