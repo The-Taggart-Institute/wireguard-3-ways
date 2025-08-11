@@ -55,13 +55,69 @@ AllowedIPs = 172.16.100.2/32, 192.168.99.0/24
 
 When a request for a home network address comes over the lighthouse tunnel, the lighthouse will use its routing rules (created by Wireguard) to send the traffic down to the home router. The home router, in turn, handles the traffic with its firewall rules. And that's how we present an entire home network to Wireguard via one—well two—peers.
 
-## Lab Exercise
+That same `AllowedIPs` pattern is necessary on all the clients we want to access the home network via the Wireguard tunnel. Remember that on clients, `AllowedIPs` amounts to a routing rule for the Wireguard tunnel. So our roaming client's `Peer` entry for the lighthouse, the `AllowedIPs` section looks like:
+
+```
+AllowedIPs = 172.16.100.0/24, 192.168.99.0/24     
+```
+
+## Lab Exercises
+
+### Tracepath
+
+We can use `tracepath` to confirm that traffic to the `192.168.99.0/24` network is being routed over Wireguard. From the roaming client, run:
+
+```bash
+tracepath 192.168.99.10
+```
+
+The hops you see should be all `172.16.100.0/24` addresses until the very end.
+
+### cURL
 
 We went to the trouble of setting up a webserver in the home network. Can you use `cURL` to access it from the roaming Wireguard client?
 
 ```bash
-curl http://182.168.99.10
+curl http://192.168.99.10
 ```
 
+Yay! Web traffic!
+
+### The Dirty Secret
+
+The lighthouse is doing its job, but there's a subtle flaw in this which, depending on your threat model, might be a dealbreaker.
+
+Let's think about what happens with that HTTP request to our home webserver. The roaming client sends the HTTP request over the Wireguard tunnel, up to the lighthouse server, which forwards it on to the home router, which in turn forwards it to the webserver.
+
+See the problem? Like I said, it's subtle.
+
+The issue lies in the first forward. In order for the lighthouse server to determine how to route the incoming packets, the traffic must _exit_ the Wireguard tunnel and be handled by the lighthouse's routing rules. And there's the rub: at that moment, as the traffic exits one Wireguard tunnel before being sent over another, the traffic is not encrypted by Wireguard. That means anyone who can listen to our lighthouse's traffic can read the raw traffic. And because our request was unencrypted HTTP, the request is fully visible.
+
+We can demonstrate this by capturing packets on the lighthouse during the HTTP request. All the tools have been included in the containers to make this happen.
+
+Start the capture on the lighthouse this way:
+
+```bash
+tcpdump -i recipe-2 tcp port 80 -w curl.pcapng
+```
+
+This will listen to the Wireguard interface for HTTP traffic. Then on the roaming client:
+
+```bash
+curl http://192.168.99.10?key=supersecretkey
+```
+
+Use `Ctrl+C` to stop the packet capture on the lighthouse. You can then use `tshark` (or `termshark` if you're feeling brave) to review the traffic. With `tshark`, the command would be:
+
+```bash
+tshark -r curl.pcapng
+```
+
+See anything interesting?
+
+### Why This Matters
+
+We discussed in the rationale for Wireguard that many VPNs are just a shifting of risk from the ISP to the VPN. In this case, we have also introduced some potential risk. If someone besides us is snooping on the cloud virtual machine, we've lost our guarantee of confidentiality. Some cloud providers are more trustworthy than others. Personally, for the providers I use, I'm less concerned about that than I am with any potential compromises of home routers. Still, this is not a perfect end-to-end encryption solution.
+But don't worry—we can do better.
 
 When you're done exploring, stop the containers with `stop.sh` in the `recipe-2` folder.
