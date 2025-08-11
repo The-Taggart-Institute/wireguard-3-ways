@@ -1,3 +1,5 @@
 book/
 index.html
 mermaid*.js
+headscale.crt
+headscale.key
