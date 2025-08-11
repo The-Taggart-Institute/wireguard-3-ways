@@ -1,3 +1,7 @@
 FROM alpine:latest
-RUN apk add curl bash tcpdump tailscale helix nano vim
-ENTRYPOINT ["tailscaled", "-tun=userspace-networking"]
+RUN apk add curl bash tcpdump iputils-tracepath tailscale helix nano vim ca-certificates
+COPY ./headscale.crt /usr/local/share/ca-certificates/headscale.crt
+RUN cat /usr/local/share/ca-certificates/headscale.crt >> /etc/ssl/certs/ca-certificates.crt
+RUN update-ca-certificates
+# ENTRYPOINT ["tailscaled", "-tun=userspace-networking"]
+ENTRYPOINT ["tailscaled"]
