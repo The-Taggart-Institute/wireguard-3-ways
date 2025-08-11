@@ -1,6 +1,7 @@
 # Table of Contents
 
 [About](../README.md)
+[Why...reguard?](docs/whyreguard.md)
 
 # Recipes
 
