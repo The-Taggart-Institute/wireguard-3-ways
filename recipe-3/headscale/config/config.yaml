@@ -11,13 +11,13 @@
 #
 # https://myheadscale.example.com:443
 #
-server_url: http://10.1.99.11:8080
+server_url: https://10.1.99.11:443
 
 # Address to listen to / bind to on the server
 #
 # For production:
 # listen_addr: 0.0.0.0:8080
-listen_addr: 10.1.99.11:8080
+listen_addr: 10.1.99.11:443
 
 # Address to listen to /metrics and /debug, you may want
 # to keep this endpoint private to your internal network
@@ -75,7 +75,7 @@ derp:
   server:
     # If enabled, runs the embedded DERP server and merges it into the rest of the DERP config
     # The Headscale server_url defined above MUST be using https, DERP requires TLS to be in place
-    enabled: false
+    enabled: true
 
     # Region ID to use for the embedded DERP server.
     # The local DERP prevails if the region ID collides with other region ID coming from
@@ -106,12 +106,12 @@ derp:
 
     # For better connection stability (especially when using an Exit-Node and DNS is not working),
     # it is possible to optionally add the public IPv4 and IPv6 address to the Derp-Map using:
-    ipv4: 1.2.3.4
+    ipv4: 10.1.99.11
     ipv6: 2001:db8::1
 
   # List of externally available DERP maps encoded in JSON
-  urls:
-    - https://controlplane.tailscale.com/derpmap/default
+  urls: []
+    # - https://controlplane.tailscale.com/derpmap/default
 
   # Locally available DERP map files encoded in YAML
   #
@@ -222,8 +222,8 @@ tls_letsencrypt_challenge_type: HTTP-01
 tls_letsencrypt_listen: ":http"
 
 ## Use already defined certificates:
-tls_cert_path: ""
-tls_key_path: ""
+tls_cert_path: "/etc/headscale/headscale.crt"
+tls_key_path: "/etc/headscale/headscale.key"
 
 log:
   # Valid log levels: panic, fatal, error, warn, info, debug, trace
