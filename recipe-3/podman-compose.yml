@@ -13,6 +13,10 @@ services:
     cap_add:
       - NET_ADMIN
       - NET_RAW
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    sysctls:
+      net.ipv4.ip_forward: 1
     tty: true
     stdin_open: true      
     command: serve
@@ -26,6 +30,10 @@ services:
       dockerfile: Containerfile
     networks:
       - wg-recipe-3_home
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    sysctls:
+      net.ipv4.ip_forward: 1
     cap_add:
       - NET_ADMIN
       - NET_RAW
@@ -41,6 +49,8 @@ services:
       dockerfile: Containerfile
     networks:
       - wg-recipe-3_roaming
+    devices:
+      - /dev/net/tun:/dev/net/tun
     cap_add:
       - NET_ADMIN
       - NET_RAW
@@ -55,10 +65,13 @@ services:
       context: ./webserver
       dockerfile: Containerfile
     networks:
-      - wg-recipe-3_home
+      wg-recipe-3_home:
+        ipv4_address: 192.168.99.10
     cap_add:
       - NET_ADMIN
       - NET_RAW
+    sysctls:
+      net.ipv4.ip_forward: 1
     tty: true
     stdin_open: true
 
