@@ -10,4 +10,6 @@
 - [Recipe 2: The Lighthouse + Subnet Router](recipe-2.md)
 - [Recipe 3: The Coordinated Mesh](recipe-3.md)
 
-## Going Further
+## Let's Get Real
+
+- [Going Live: Leaving the Test Kitchen](going-live.md)
