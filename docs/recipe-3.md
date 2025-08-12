@@ -55,7 +55,7 @@ You should see hops that represent Tailscale nodes. That tells us that the `192.
 You can of course then use `curl` to confirm it works.
 
 
-### Tailscale hostnames
+### Tailscale Hostnames
 
 From either client, run `tailscale status` to see the hostnames Tailscale associates with the IP addresses. Try using `ping` or `nc` to establish network connections using hostnames.
 
