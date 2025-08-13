@@ -83,10 +83,13 @@ But Tailscale is a cloud service. So suppose you didn't want to entrust your dat
 
 ## How to Use This Repo
 
-The source of this repo is fully readable here, but the online "book" version for easy reading is online at [https://3ways.taggartinstitute.org](https://3ways.taggartinstitute.org).
+The source of this repo is fully readable here, but the online "book" version for easy reading is online at [https://w3w.taggartinstitute.org](https://w3w.taggartinstitute.org).
 
 Read along and follow the provide instructions to participate in the workshop!
 
 ## Instructions
 
 See the [docs](docs/SUMMARY.md) folder for the instructions. Or click next if you're reading the book!
+
+> <center><i>Made with 💜 by <a href="https://taggartinstitute.org">The Taggart Institute</a></i></center>
+> <center><img src="logo.png" style="width: 250px; height: 250px; margin-top: 5px;" /></center>
