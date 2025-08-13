@@ -20,6 +20,10 @@ Despite the marketing, the use of most commercial VPNs is an act of transferring
 
 But either way, you still have to trust those services. Some are probably trustworthy, but a system that relies on only a few good actors is a fragile system indeed. Instead, I'd like to build a private networking landscape in which many individuals can and do create the networks they require.
 
+## The Threat Model
+
+What exactly are we defending against here? This isn't really about criminals stealing your identity, much less machine-in-the-middle attacks at the coffee shop. What we're talking about here concerns community safety. Maybe you're organizing for political action. Maybe you're sharing media that those in power would rather not be shared. Maybe you're trying to run an independent news organization. Many forms of community have good reason to be concerned about an overzealous state attempting to monitor their communications and data archives. Entrusting all of this data to third parties who have more interest in cooperating with the state than protecting your privacy is a dicey situation.
+
 ## Wireguard
 
 Wireguard offers the ability to create the kind of private network you _need_, not the one being sold to you. The tradeoff, at least in the more elementary setups, is knowing how the technology works. In this coming age, that knowledge is precious.
@@ -39,11 +43,11 @@ Compared to other VPN technologies like OpenVPN or IPSec, Wireguard is extremely
 
 Wireguard is a Linux kernel module. That means every modern Linux machine has the capability of being a Wireguard node, and its residence in the kernel ensures a speedy pipeline to the networking hardware. But that's not all. Wireguard clients exist of Windows and macOS, as well as iOS and Android mobile operating systems. And because the Wireguard technology is licensed entirely under free and open source licenses, I don't expect it to disappear anytime soon.
 
-## Performance
+### Performance
 
 Wireguard [routinely outperforms](https://www.wireguard.com/performance/) other private networking technologies in throughput benchmarks. Anecdotally, I have experienced this reality. I have run full RDP sessions from conferences back to my lab at home over Wireguard, without a moment's hiccucp. If Wireguard can achieve [line rate](https://netseccloud.com/understanding-line-rate-in-networking-a-comprehensive-guide) on a gigabit card, that means your VPN layer is not a bottleneck in the communication.
 
-## Cryptography
+### Cryptography
 
 I encourage you to review the [cryptographic details](https://www.wireguard.com/protocol/) of the Wireguard protocol, if you're so inclined. I will never call myself a cryptography expert, but the ciphers in use and how they're used have been independently tested and attested. I'm confident in the cryptographic strength of the protocol.
 
