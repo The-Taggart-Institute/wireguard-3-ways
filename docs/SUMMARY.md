@@ -1,6 +1,6 @@
 # Table of Contents
 
-[About](../README.md)
+[About](README.md)
 [Why...reguard?](whyreguard.md)
 [Recipe 0: A Simple Mesh](recipe-0.md)
 [Recipe 1: The Lighthouse](recipe-1.md)

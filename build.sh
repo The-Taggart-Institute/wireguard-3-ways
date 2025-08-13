@@ -4,6 +4,7 @@ date=$(date)
 
 mdbook build
 cp -R book/* pages/
+cp mermaid* pages/
 cd pages
 git add -A
 git commit -m "Rebuild: $date"
