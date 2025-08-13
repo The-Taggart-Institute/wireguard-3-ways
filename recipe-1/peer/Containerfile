@@ -1,5 +1,0 @@
-FROM wg-peer:recipe-0
-RUN mkdir /peer
-COPY ./peer.conf /peer/
-COPY ./setup.sh /peer/
-ENTRYPOINT /bin/bash

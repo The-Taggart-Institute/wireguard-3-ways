@@ -1,3 +1,0 @@
-FROM wg-peer:recipe-1
-RUN echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
-ENTRYPOINT /bin/bash

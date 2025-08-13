@@ -1,6 +1,0 @@
-FROM wg-peer:recipe-2
-RUN apk add tailscale ca-certificates
-COPY ./headscale.crt /usr/local/share/ca-certificates/headscale.crt
-RUN cat /usr/local/share/ca-certificates/headscale.crt >> /etc/ssl/certs/ca-certificates.crt
-RUN update-ca-certificates
-ENTRYPOINT ["tailscaled"]

@@ -1,7 +1,0 @@
-FROM alpine:latest
-RUN apk add caddy bash curl
-RUN mkdir /var/www/
-COPY ./index.html /var/www/
-RUN chown -R caddy: /var/www
-WORKDIR /var/www
-ENTRYPOINT ["caddy", "file-server"]

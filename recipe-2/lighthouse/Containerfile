@@ -1,4 +1,0 @@
-FROM wg-peer:recipe-2
-COPY ./lighthouse.conf /peer/peer.conf
-COPY ./setup.sh /peer/setup.sh
-ENTRYPOINT /bin/bash
