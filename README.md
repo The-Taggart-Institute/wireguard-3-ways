@@ -26,6 +26,10 @@ By the end of this workshop, participants will understand:
 
 ### Technical Requirements
 
+If you want to connect to the pre-built lab environment, you'll need to install [Tailscale](https://tailscale.com/download). We won't use the Tailscale service directly; instead, we will use the very open source tools discussed in the workshop to connect to the lab. So meta!
+
+Instructions for connecting will be provided at the workshop.
+
 This workshop uses [Podman](https://podman.io) for its demonstrations. It can be installed on Linux, Windows or macOS. On Windows, Podman Desktop will require either [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or Hyper-V to virtualize a small Linux kernel. We will also use Podman Compose, which is a package install for Linux, but [Podman Desktop](https://podman-desktop.io/docs/compose) can support this function as well.
 
 The workshop will also use [Zellij](https://zellij.dev) for easy terminal control of the containers. If not participating with the provided resources, I recommend installing it.
