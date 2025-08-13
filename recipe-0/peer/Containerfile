@@ -2,4 +2,6 @@ FROM alpine:latest
 
 RUN apk add wireguard-tools bash nano helix
 COPY ./peer.conf /etc/wireguard/recipe-0.conf
+COPY ./wg-quick-alias.sh /etc/bash/wg-quick-alias.sh
+RUN chmod 0755 /etc/bash/wg-quick-alias.sh
 ENTRYPOINT /bin/bash

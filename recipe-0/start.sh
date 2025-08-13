@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build the image
-podman image build -t wg-recipe-0:latest .
+podman compose build wg-peer-1
 
 # Launch the containers
 podman compose up -d
