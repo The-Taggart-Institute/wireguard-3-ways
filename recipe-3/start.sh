@@ -10,7 +10,6 @@ cp config/headscale.crt ../client/
 cd ..
 
 # Build images
-podman compose build home-router
 podman compose build headscale
 podman compose build ts-client_home
 
