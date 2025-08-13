@@ -3,7 +3,7 @@
 date=$(date)
 
 mdbook build
-cp -R public/* pages/
+cp -R book/* pages/
 cd pages
 git add -A
 git commit -m "Rebuild: $date"
