@@ -34,7 +34,7 @@ In the `recipe-1` folder, run the `start.sh` script to bring up our peers.
 
 ## Wireguard Config
 
-This time, each hosts Wireguard config (`/etc/wireguard/recipe-1.conf`) has a keypair configured. What remains is for us to connect the two peers to the lighthouse.
+This time, each host's Wireguard config (`/etc/wireguard/recipe-1.conf`) has a keypair configured. What remains is for us to connect the two peers to the lighthouse.
 
 In this model, each non-lighthouse Peer adds the same information to their `Peer` entry: the lighthouse's public key and IP address, and setting AllowedIPs to the whole `/24` subnet we're using for Wireguard (i.e. `172.16.100.0/24`). That way, all traffic to any IP address in that subnet will be routed to the lighthouse.
 
