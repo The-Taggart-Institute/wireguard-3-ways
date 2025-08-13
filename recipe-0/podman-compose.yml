@@ -1,6 +1,6 @@
 services:
   wg-peer-1:
-    image: wg-peer:recipe-1
+    image: wg-peer:recipe-0
     container_name: wg-recipe-0_peer-1
     hostname: r0_wg-peer-1
     build:
@@ -14,7 +14,7 @@ services:
     stdin_open: true
       
   wg-peer-2:
-    image: wg-peer:recipe-1
+    image: wg-peer:recipe-0
     container_name: wg-recipe-0_peer-2
     hostname: r0_wg-peer-2
     build:
@@ -28,7 +28,7 @@ services:
     stdin_open: true
 
   wg-peer-3:
-    image: wg-peer:recipe-1
+    image: wg-peer:recipe-0
     container_name: wg-recipe-0_peer-3
     hostname: r0_wg-peer-3
     build:
