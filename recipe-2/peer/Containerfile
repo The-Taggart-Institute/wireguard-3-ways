@@ -1,6 +1,5 @@
-FROM alpine:latest
-
-RUN apk add wireguard-tools tcpdump termshark tshark iputils-tracepath bash nano helix curl
+FROM wg-peer:recipe-1
+RUN apk add termshark tshark iputils-tracepath
 RUN mkdir /peer
 COPY ./peer.conf /peer/
 COPY ./setup.sh /peer/
