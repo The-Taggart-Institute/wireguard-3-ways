@@ -1,5 +1,5 @@
 FROM wg-peer:recipe-2
-RUN apk nftables
+RUN apk add nftables
 COPY ./home-router.conf /peer/peer.conf
 COPY ./setup.sh /peer/
 ENTRYPOINT /bin/bash
