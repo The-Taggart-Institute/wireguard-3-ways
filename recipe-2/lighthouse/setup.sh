@@ -4,6 +4,7 @@ WG_CONF=/etc/wireguard/recipe-2.conf
 
 # Enter proper context
 pushd /peer
+cp ./peer.conf $WG_CONF
 privkey=$(wg genkey)
 pubkey=$(echo $privkey | wg pubkey)
 sed -i "s|<<PRIVATE_KEY>>|$privkey|" $WG_CONF
