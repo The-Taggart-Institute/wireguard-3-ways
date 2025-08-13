@@ -7,4 +7,4 @@ podman image build -t wg-recipe-0:latest .
 podman compose up -d
 
 # Initialize Zellij
-zellij --layout zellij_recipe-0.kdl
+zellij -n zellij_recipe-0.kdl -s recipe-0

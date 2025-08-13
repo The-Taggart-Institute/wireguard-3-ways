@@ -1,6 +1,6 @@
 layout {
-    cwd "~/Projects/wireguard-3-ways/recipe-1"
-    tab name="recipe-1" focus=true hide_floating_panes=true {
+    cwd "~/Projects/wireguard-3-ways/recipe-0"
+    tab name="recipe-0" focus=true hide_floating_panes=true {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
@@ -9,15 +9,15 @@ layout {
                 pane size="50%" focus=true {
                 }
                 pane command="podman" size="50%" {
-                    args "exec" "-it" "wg-recipe-1_server" "/bin/bash"
+                    args "exec" "-it" "wg-recipe-0_server" "/bin/bash"
                 }
             }
             pane size="50%" {
                 pane command="podman" size="50%" {
-                    args "exec" "-it" "wg-recipe-1_peer-1" "/bin/bash"
+                    args "exec" "-it" "wg-recipe-0_peer-1" "/bin/bash"
                 }
                 pane command="podman" size="50%" {
-                    args "exec" "-it" "wg-recipe-1_peer-2" "/bin/bash"
+                    args "exec" "-it" "wg-recipe-0_peer-2" "/bin/bash"
                 }
             }
         }
