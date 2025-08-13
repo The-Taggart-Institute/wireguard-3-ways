@@ -1,8 +1,8 @@
 services:
   wg-peer-1:
     image: wg-peer:recipe-1
-    container_name: wg-recipe-0_server
-    hostname: r0_wg-server
+    container_name: wg-recipe-0_peer-1
+    hostname: r0_wg-peer-1
     build:
       context: ./peer
       containerfile: Containerfile
@@ -15,13 +15,13 @@ services:
       
   wg-peer-2:
     image: wg-peer:recipe-1
-    container_name: wg-recipe-0_peer-1
-    hostname: r0_wg-peer-1
+    container_name: wg-recipe-0_peer-2
+    hostname: r0_wg-peer-2
     build:
       context: ./peer
       containerfile: Containerfile
       networks:
-      - wg-recipe-0
+        - wg-recipe-0
     cap_add:
       - NET_ADMIN
     tty: true
@@ -29,13 +29,13 @@ services:
 
   wg-peer-3:
     image: wg-peer:recipe-1
-    container_name: wg-recipe-0_peer-2
-    hostname: r0_wg-peer-2
+    container_name: wg-recipe-0_peer-3
+    hostname: r0_wg-peer-3
     build:
       context: ./peer
       containerfile: Containerfile
       networks:
-      - wg-recipe-0
+        - wg-recipe-0
     cap_add:
       - NET_ADMIN
     tty: true
