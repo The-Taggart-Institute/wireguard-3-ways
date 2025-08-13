@@ -1,6 +1,6 @@
-FROM alpine:latest
+FROM wg-peer:recipe-0
 
-RUN apk add wireguard-tools tcpdump bash nano helix
+RUN apk add tcpdump
 RUN mkdir /peer
 COPY ./peer.conf /peer/
 COPY ./setup.sh /peer/
