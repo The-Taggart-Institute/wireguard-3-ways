@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Why...reguard? - Wireguard 3 Ways: Cooking up Privacy in a Surveillance State</title>
+        <title>About - Wireguard 3 Ways: Cooking up Privacy in a Surveillance State</title>
 
 
         <!-- Custom HTML head -->
@@ -175,53 +175,72 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="whyreguard"><a class="header" href="#whyreguard">Why...reguard?</a></h1>
-<p>Why do this at all? Why bother setting up a custom private network when there are so many services that will do it for you? And why choose Wireguard when other turnkey technologies like OpenVPN have been around for so long?</p>
-<p>Let's get into it.</p>
-<h2 id="trust-and-risk"><a class="header" href="#trust-and-risk">Trust and Risk</a></h2>
-<p>If you're reading this, odds are you have a slightly different perspective on "the cloud" than most of the population. After all, it's just someone else's computer, right? Whenever you entrust your data to a third-party service, you are accepting some degree of risk to your data's confidentiality, integrity, and availability in that transaction. The service could go down due to demand, misconfiguration, or equipment failure (availability). Something could go catastrophically wrong with their infrastructure, leading to corrupting of data (integrity). Intentionally or otherwise, the service may enable others to view your data, even data intended to be secret (confidentiality).</p>
-<p>These risks are hardly theoretical; we see the reality play out time and again.</p>
-<p>Now imagine you're building a community that the government deems subversive. We don't even have to explore illegal activity, just activity that those in power don't like so much. Further imagine that you've entrusted your confidential data to a cloud service. In order to feel safe, you need the following guarantees:</p>
+                        <h1 id="wireguard-3-ways-cooking-up-security-in-a-surveillance-state"><a class="header" href="#wireguard-3-ways-cooking-up-security-in-a-surveillance-state">Wireguard 3 Ways: Cooking Up Security in a Surveillance State</a></h1>
+<p>This repository contains instructions and support files for the <a href="https://hope.net">HOPE</a> workshop.</p>
+<h2 id="learning-objectives"><a class="header" href="#learning-objectives">Learning Objectives</a></h2>
+<p>We break learning objectives into <strong>Skills</strong> and <strong>Concepts</strong>.</p>
+<h3 id="skills"><a class="header" href="#skills">Skills</a></h3>
+<p>By the end of this workshop, participants will be able to:</p>
+<ul>
+<li>Create Wireguard peers and servers</li>
+<li>Establish Wireguard networks across NAT boundaries</li>
+</ul>
+<h3 id="concepts"><a class="header" href="#concepts">Concepts</a></h3>
+<p>By the end of this workshop, participants will understand:</p>
+<ul>
+<li>Wireguard tunnel design</li>
+<li>Wireguard asymmetric cryptography usage</li>
+<li>Wireguard networking strategies</li>
+<li>Basic mesh networking principals</li>
+</ul>
+<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
+<h3 id="technical-requirements"><a class="header" href="#technical-requirements">Technical Requirements</a></h3>
+<p>This workshop uses <a href="https://podman.io">Podman</a> for its demonstrations. It can be installed on Linux, Windows or macOS. On Windows, Podman Desktop will require either <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL</a> or Hyper-V to virtualize a small Linux kernel. We will also use Podman Compose, which is a package install for Linux, but <a href="https://podman-desktop.io/docs/compose">Podman Desktop</a> can support this function as well.</p>
+<p>The workshop will also use <a href="https://zellij.dev">Zellij</a> for easy terminal control of the containers. If not participating with the provided resources, I recommend installing it.</p>
+<p>The containers will have several terminal-based text editors installed (Vim, Nano, Helix) to suit your preference. But you will be editing text in the terminal.</p>
+<h3 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h3>
+<p>Familiarity with the Linux command line will be extremely helpful in this workshop. As will familiarity with basic networking concepts such as subnets and firewall rules.</p>
+<h3 id="cloud-vm"><a class="header" href="#cloud-vm">Cloud VM</a></h3>
+<p>The Recipes provided in this repository are wholly self-contained. You can run them on any platform that supports Podman/Podman Compose. However, for full participation in the workshop, you will need two resources I can't provide for you:</p>
 <ol>
-<li>The service is doing everything securely on the technical level.</li>
-<li>There are no existing compromises to the service or technologies used by the service.</li>
-<li>The service will be less than eager to cooperate with a subpoena or a warrant.</li>
+<li>A registered domain name</li>
+<li>A cloud-hosted virtual machine</li>
 </ol>
-<p>Despite the marketing, the use of most commercial VPNs is an act of transferring risk not mitigating it. You've moved the need to trust your internet service provider to the need to trust your VPN—in some cases, due to common misconfigurations, data actually ends up going both to the ISP <em>and</em> the VPN, meaning you've now increased your risk profile.</p>
-<p>But either way, you still have to trust those services. Some are probably trustworthy, but a system that relies on only a few good actors is a fragile system indeed. Instead, I'd like to build a private networking landscape in which many individuals can and do create the networks they require.</p>
-<h2 id="the-threat-model"><a class="header" href="#the-threat-model">The Threat Model</a></h2>
-<p>What exactly are we defending against here? This isn't really about criminals stealing your identity, much less machine-in-the-middle attacks at the coffee shop. What we're talking about here concerns community safety. Maybe you're organizing for political action. Maybe you're sharing media that those in power would rather not be shared. Maybe you're trying to run an independent news organization. Many forms of community have good reason to be concerned about an overzealous state attempting to monitor their communications and data archives. Entrusting all of this data to third parties who have more interest in cooperating with the state than protecting your privacy is a dicey situation.</p>
-<h2 id="wireguard"><a class="header" href="#wireguard">Wireguard</a></h2>
-<p>Wireguard offers the ability to create the kind of private network you <em>need</em>, not the one being sold to you. The tradeoff, at least in the more elementary setups, is knowing how the technology works. In this coming age, that knowledge is precious.</p>
-<p>But what makes Wireguard so special as a technology? Four aspects make me very confident in networks built on Wireguard:</p>
-<ol>
-<li>Simplicity</li>
-<li>Ubiquity</li>
-<li>Performance</li>
-<li>Cryptography</li>
-</ol>
-<h3 id="simplicity"><a class="header" href="#simplicity">Simplicity</a></h3>
-<p>Compared to other VPN technologies like OpenVPN or IPSec, Wireguard is extremely simple at its core. As this workshop demonstrates, a basic mesh is hardly more than a few lines of config—and that's before we get to the rich ecosystem of tools built on Wireguard, some of which we'll explore during this workshop.</p>
-<h3 id="ubiquity"><a class="header" href="#ubiquity">Ubiquity</a></h3>
-<p>Wireguard is a Linux kernel module. That means every modern Linux machine has the capability of being a Wireguard node, and its residence in the kernel ensures a speedy pipeline to the networking hardware. But that's not all. Wireguard clients exist of Windows and macOS, as well as iOS and Android mobile operating systems. And because the Wireguard technology is licensed entirely under free and open source licenses, I don't expect it to disappear anytime soon.</p>
-<h3 id="performance"><a class="header" href="#performance">Performance</a></h3>
-<p>Wireguard <a href="https://www.wireguard.com/performance/">routinely outperforms</a> other private networking technologies in throughput benchmarks. Anecdotally, I have experienced this reality. I have run full RDP sessions from conferences back to my lab at home over Wireguard, without a moment's hiccucp. If Wireguard can achieve <a href="https://netseccloud.com/understanding-line-rate-in-networking-a-comprehensive-guide">line rate</a> on a gigabit card, that means your VPN layer is not a bottleneck in the communication.</p>
-<h3 id="cryptography"><a class="header" href="#cryptography">Cryptography</a></h3>
-<p>I encourage you to review the <a href="https://www.wireguard.com/protocol/">cryptographic details</a> of the Wireguard protocol, if you're so inclined. I will never call myself a cryptography expert, but the ciphers in use and how they're used have been independently tested and attested. I'm confident in the cryptographic strength of the protocol.</p>
-<h2 id="fun"><a class="header" href="#fun">Fun</a></h2>
-<p>This seems like it shouldn't matter, but it kind of does. If you've done any kind of network engineering, you know what an utter slog it can be. I shudder when I think of the nights I spent reconfiguring VLANs on Cisco switches a lifetime ago.</p>
-<p>Wireguard doesn't feel like that. Setting up Wireguard networks is, dare I say it, pretty fun! Yes it's technical, but straightforward enough to make sense to most curious users. And because Wireguard itself is so simple, making it work often reveals other surprises in your network topology.</p>
-<p>So that's why Wireguard.</p>
+<p>These are not zero-cost, zero-identity activities, and as such are optional. However, the workshop will involve demonstrating how to set up a real Wireguard network for use across the internet, which means public-facing assets. If you intend to fully participate in the workshop, these will be necessary.</p>
+<p>I recommend <a href="https://porkbun.com">Porkbun</a> or <a href="https://namecheap.com">Namecheap</a> for a domain registrar, and <a href="https://digitalocean.com">Digital Ocean</a> for a VPS provider.</p>
+<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
+<p>Here are provided 3 "recipes" for creating Wireguard networks, in increasing complexity—and utility. Each is comprised of <a href="https://podman.io">Podman</a> containers, networked together. They can be run on any platform that Podman supports, but for the HOPE workshop, a cloud VM will be provided for participants.</p>
+<h3 id="zellij"><a class="header" href="#zellij">Zellij</a></h3>
+<p>The recipes provded each have a startup script that performs some housekeeping on the Podman containers. It also launches a helper terminal multiplexer called <a href="https://zellij.dev">Zellij</a>. If you aren't using the provided resources, I recommend installing Zellij to make full use of the environment.</p>
+<p>Zellij will create terminal windows for all necessary containers, as well as a separate window for interacting with the host itself. Zellij is mouse-sensitive and fairly intuitive—well, for a terminal tool.</p>
+<h2 id="the-recipes"><a class="header" href="#the-recipes">The Recipes</a></h2>
+<p>I know it says "3 ways" on the box, but actually we need to start with a fundamental dish before moving on to the real recipes.</p>
+<h3 id="0-a-simple-mesh"><a class="header" href="#0-a-simple-mesh">0. A Simple Mesh</a></h3>
+<p>In this recipe, all our peers live on the same network. That could make Wireguard redundant, but it will establish an additional layer of encryption on top of all peer-to-peer communications. This recipe is more about learning the concepts of Wireguard configurations. Each peer connects to every other peer via manual point-to-point connections. This works, but doesn't exactly scale.</p>
+<h3 id="1-the-lighthouse"><a class="header" href="#1-the-lighthouse">1. The Lighthouse</a></h3>
+<p>If we want to connect multiple hosts across networks, but we don't want to open inbound ports, we need to use a public server that all our peers can see. This "lighthouse" server will be the one to which all the others connect.</p>
+<h3 id="2-the-lighthouse--subnet-router"><a class="header" href="#2-the-lighthouse--subnet-router">2. The Lighthouse + Subnet Router</a></h3>
+<p>What if we want access to an entire home network without wanting to configure Wireguard on all of those devices? That's where "subnet routers" come in. This configuration allows a (Linux) Wireguard host to provide access to its neighbors through the Wireguard tunnel.</p>
+<h3 id="3-the-coordinated-mesh"><a class="header" href="#3-the-coordinated-mesh">3. The Coordinated Mesh</a></h3>
+<p>One of the shortcomings of the "lighthouse" model is that the lighthouse becomes a termination point for the Wireguard encrypted tunnel. If we have doubts about our cloud service provider, then any otherwise unencrypted traffic may be sniffed with access to this server. But we need a central point that everyone can see to guarantee connection. How to square this circle?</p>
+<p><a href="https://tailscale.com">Tailscale</a> solves this problem by using multiple strategies to show peers how to connect, and then allows the peers to connect directly to each other, eliminating the machine-in-the-middle. And it's all built on top of Wireguard, so you get the same security with much less hassle.</p>
+<p>But Tailscale is a cloud service. So suppose you didn't want to entrust your data there either? Luckily, the core of Tailscale is open source—both client daemon and server. <a href="https://headscale.net">Headscale</a> is a way to self-host a Tailscale server and network. The setup for Headscale is <em>considerably</em> easier than raw Wireguard.</p>
+<h2 id="how-to-use-this-repo"><a class="header" href="#how-to-use-this-repo">How to Use This Repo</a></h2>
+<p>The source of this repo is fully readable here, but the online "book" version for easy reading is online at <a href="https://w3w.taggartinstitute.org">https://w3w.taggartinstitute.org</a>.</p>
+<p>Read along and follow the provide instructions to participate in the workshop!</p>
+<h2 id="instructions"><a class="header" href="#instructions">Instructions</a></h2>
+<p>See the <a href="docs/SUMMARY.html">docs</a> folder for the instructions. Or click next if you're reading the book!</p>
+<blockquote>
+<center><i>Made with 💜 by <a href="https://taggartinstitute.org">The Taggart Institute</a></i></center>
+<center><img src="logo.png" style="width: 250px; height: 250px; margin-top: 5px;" /></center>
+</blockquote>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="about.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
 
-                            <a rel="next prefetch" href="recipe-0.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="whyreguard.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -231,11 +250,8 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="about.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
 
-                    <a rel="next prefetch" href="recipe-0.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="whyreguard.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
