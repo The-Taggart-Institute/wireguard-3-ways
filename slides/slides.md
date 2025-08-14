@@ -41,6 +41,14 @@ Queens, New York, NY, USA
 
 ![width:100px](logo.png)
 
+# Agreements
+
+- This is a safe, supportive place to learn
+- I make mistakes
+  - They are not the point
+- Questions should be seeking knowledge, not demonstrating knowledge
+- Play nicely with my equipment
+
 # Learning Objectives: Skills
 
 By the end of this workshop, participants will be able to:
@@ -112,7 +120,7 @@ This requires:
 
 # About Wireguard
 
-![](wireguard.png)
+![width:500px](wireguard.png)
 
 # Why Use Wireguard?
 
@@ -153,17 +161,78 @@ tailscale login --login-server=https://hs.taggartinstitute.org
 
 # Recipe 0: A Simple Mesh
 
+<!--
+- Asymmetric keys
+- wg genkey/pubkey
+- Config format
+- AllowedIPs
+- wg-quick
+-->
+
+![](r0.png)
+
 # Recipe 1: The Lighthouse
+
+<!--
+- Everyone connects to one thing in line of sight
+- Most peers have only outgoing entries
+- IP Forwarding
+- Netcat
+-->
+
+![](r1.png)
 
 # Recipe 2: Lightouse + Subnet
 
+<!--
+- Firewall rules
+- AllowedIPs
+- Tracepath
+- cURL
+- The Dirty Secret
+-->
+
+![height:400px](r2.png)
+
 # Recipe 3: Coordinate Mesh
+
+<!--
+- Headscale
+- Nodes
+- Authkeys/Preauthkeys
+- We just did that for the lab!
+-->
 
 # Break
 
 # Going Live
 
 ## Your Personal Private Networking Server
+
+# Cloud VM
+
+## VPS Options
+
+- Digital Ocean
+- Vultr
+- Hetzner
+- Azure
+- AWS
+
+# DNS
+
+- Namecheap
+- Porkbun
+- A record to the VM's IP
+
+# Headscale Setup
+
+- Headscale users
+- `/etc/headscale/config.yaml`
+  - `server_url`
+  - `listen_addr`
+  - `acme_email`
+  - `tls_letsencrypt_hostname`
 
 # Thank you!
 
