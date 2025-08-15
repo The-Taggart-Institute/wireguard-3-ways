@@ -140,7 +140,7 @@ This requires:
 2. Don't use the GUI, Windows people!
 
 ```bash
-tailscale login --login-server=https://wg3g.app
+tailscale login --login-server=https://wg3w.app
 ```
 
 3. Instead of visiting the URL, copy the last part
