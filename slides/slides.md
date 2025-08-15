@@ -12,12 +12,13 @@ style: |
   }
 headingDivider: 1
 ---
-
-# Wireguard 3 Ways
+<center>
+<h1>Wireguard 3 Ways</h1>
 
 **Cooking up Security in a Surveillance State**
 
 **Michael Taggart**
+</center>
 
 ![width:30px](https://www.pinclipart.com/picdir/big/16-161177_big-image-mastodon-red-social-logo-clipart.png) @mttaggart@infosec.exchange
 ![width:30px](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Bluesky_Logo.svg/600px-Bluesky_Logo.svg.png) @taggart-tech.com
@@ -35,7 +36,7 @@ Queens, New York, NY, USA
 
 ![width:250px](uclah_logo.png)
 
-- Founder of The Taggart Institute
+- Founder of <span style="color:magenta">The Taggart Institute</span>
   - We make low-cost, high-value tech training
   - taggartinstitute.org
 
@@ -95,14 +96,14 @@ This requires:
 
 # The Book
 
-### https://w3w.taggartinstitute.org
+### https://book.wg3w.app
 
 # Joined Matrix?
 
 - Cinny >>> Element: https://app.cinny.in
 - I'm `@taggart:taggart.social`
 - We have a Room!
-- DMs will be useful in a bit
+- I'll be watching for questions
 
 # Today's Agenda
 
@@ -139,15 +140,14 @@ This requires:
 2. Don't use the GUI, Windows people!
 
 ```bash
-tailscale login --login-server=https://hs.taggartinstitute.org
+tailscale login --login-server=https://wg3g.app
 ```
 
-3. Visit the URL you see
-4. Send me a Matrix DM with the `--key` value
-5. Save the `key`. It's now a password for something
-5. I send you a username
-6. `ssh $username@hope-w3w`
-7. Welcome to the lab!
+3. Instead of visiting the URL, copy the last part
+4. Go to `https://auth.wg3g.app`
+5. Enter the secret key: `CHANGEME` 
+6. Enter the registration code you copied.
+7. `ssh $your-username@wg3w-lab`
 
 # Lab Setup: BYO
 
@@ -194,7 +194,7 @@ tailscale login --login-server=https://hs.taggartinstitute.org
 
 ![height:400px](r2.png)
 
-# Recipe 3: Coordinate Mesh
+# Recipe 3: Coordinated Mesh
 
 <!--
 - Headscale
@@ -213,17 +213,17 @@ tailscale login --login-server=https://hs.taggartinstitute.org
 
 ## VPS Options
 
-- Digital Ocean
-- Vultr
-- Hetzner
-- Azure
-- AWS
+- Digital Ocean 👌
+- Vultr 🤨
+- Hetzner 😬
+- Azure 👹
+- AWS 😡
 
 # DNS
 
 - Namecheap
 - Porkbun
-- A record to the VM's IP
+- Create an `A` record to the VM's IP Address
 
 # Headscale Setup
 
