@@ -134,6 +134,14 @@ This requires:
   - Cryptography
 - Fun
 
+# Example Use Case
+
+Outside of normal VPN uses, why might you use a private Wireguard network in this climate?
+
+- Political activism/organizing
+- Secure dissemination of "subversive" materials
+- Zero-cloud access to remote compute resources
+
 # Lab Setup: Managed Lab
 
 1. Install Tailscale

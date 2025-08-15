@@ -24,6 +24,14 @@ But either way, you still have to trust those services. Some are probably trustw
 
 What exactly are we defending against here? This isn't really about criminals stealing your identity, much less machine-in-the-middle attacks at the coffee shop. What we're talking about here concerns community safety. Maybe you're organizing for political action. Maybe you're sharing media that those in power would rather not be shared. Maybe you're trying to run an independent news organization. Many forms of community have good reason to be concerned about an overzealous state attempting to monitor their communications and data archives. Entrusting all of this data to third parties who have more interest in cooperating with the state than protecting your privacy is a dicey situation.
 
+## Examples Use Cases
+
+Outside of normal VPN uses, why might you use a private Wireguard network in this climate?
+
+- Political activism/organizing
+- Secure dissemination of "subversive" materials
+- Zero-cloud access to remote compute resources
+
 ## Wireguard
 
 Wireguard offers the ability to create the kind of private network you _need_, not the one being sold to you. The tradeoff, at least in the more elementary setups, is knowing how the technology works. In this coming age, that knowledge is precious.
