@@ -163,6 +163,7 @@ tailscale login --login-server=https://wg3w.app
 2. Git installed
 3. Zellij Installed
 4. `git clone https://codeberg.org/The-Taggart-Institute/wireguard-3-ways`
+  - Or: `https://github.com/The-Taggart-Institute/wireguard-3-ways`
 5. `cd wireguard-3-ways`
 
 # Break
